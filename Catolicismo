@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catolicismo - Fé, História e Tradição</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 50%, #fff9c4 100%);
+            min-height: 100vh;
+            color: #4a4a4a;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f8bbd9 0%, #bbdefb 100%);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #6d4c7d;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: #5a5a5a;
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0 0;
+            font-style: italic;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #f8bbd9, #bbdefb);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            color: #6d4c7d;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #f48fb1, #90caf9);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #f48fb1, #90caf9);
+            transform: translateY(-1px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #f8bbd9;
+        }
+
+        .card h2 {
+            color: #6d4c7d;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            color: #8e24aa;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .saint-card {
+            background: linear-gradient(135deg, #fce4ec, #e8f5e8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .saint-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .saint-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .prayer-box {
+            background: linear-gradient(135deg, #e3f2fd, #fff9c4);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-left: 5px solid #90caf9;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .bible-verse {
+            background: linear-gradient(135deg, #fff9c4, #fce4ec);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 5px solid #fff176;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .symbol-item {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .symbol-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .curiosity-item {
+            background: linear-gradient(135deg, #f8bbd9, #e1bee7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 5px solid #ad1457;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #6d4c7d, #8e24aa);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>✝️ Catolicismo</h1>
+        <p>Fé, História e Tradição Cristã</p>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('home')">Início</button>
+            <button class="nav-btn" onclick="showSection('santos')">Santos</button>
+            <button class="nav-btn" onclick="showSection('oracoes')">Orações</button>
+            <button class="nav-btn" onclick="showSection('biblia')">Bíblia</button>
+            <button class="nav-btn" onclick="showSection('simbolos')">Símbolos</button>
+            <button class="nav-btn" onclick="showSection('historia')">História</button>
+            <button class="nav-btn" onclick="showSection('curiosidades')">Curiosidades</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Seção Início -->
+        <section id="home" class="section active">
+            <div class="card">
+                <h2>🏛️ Bem-vindos ao Catolicismo</h2>
+                <p>O catolicismo é a maior denominação cristã do mundo, com mais de 1,3 bilhão de fiéis. Fundada por Jesus Cristo e seus apóstolos, a Igreja Católica preserva há mais de 2000 anos os ensinamentos cristãos, tradições sagradas e a rica herança espiritual.</p>
+                
+                <h3>📚 Pilares da Fé Católica</h3>
+                <div class="grid">
+                    <div class="saint-card">
+                        <div class="saint-icon">📖</div>
+                        <h4>Sagrada Escritura</h4>
+                        <p>A Bíblia como palavra de Deus, composta por 73 livros do Antigo e Novo Testamento.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">⛪</div>
+                        <h4>Tradição Sagrada</h4>
+                        <p>Ensinamentos transmitidos pelos apóstolos e preservados pela Igreja através dos séculos.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">👨‍💼</div>
+                        <h4>Magistério</h4>
+                        <p>Autoridade da Igreja para interpretar autenticamente a Palavra de Deus.</p>
+                    </div>
+                </div>
+
+                <h3>🎭 Os Sete Sacramentos</h3>
+                <p>Os sacramentos são sinais visíveis da graça invisível de Deus:</p>
+                <ul style="line-height: 1.8; font-size: 1.1rem;">
+                    <li><strong>Batismo</strong> - Entrada na vida cristã</li>
+                    <li><strong>Confirmação</strong> - Fortalecimento na fé</li>
+                    <li><strong>Eucaristia</strong> - Comunhão com Cristo</li>
+                    <li><strong>Penitência</strong> - Perdão dos pecados</li>
+                    <li><strong>Unção dos Enfermos</strong> - Conforto na doença</li>
+                    <li><strong>Ordem</strong> - Consagração sacerdotal</li>
+                    <li><strong>Matrimônio</strong> - União sagrada</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção Santos -->
+        <section id="santos" class="section">
+            <div class="card">
+                <h2>👼 Santos e Santas</h2>
+                <p>Os santos são exemplos de vida cristã que intercede por nós junto a Deus. Conheça alguns dos santos mais venerados:</p>
+                
+                <div class="grid">
+                    <div class="saint-card">
+                        <div class="saint-icon">🌹</div>
+                        <h4>Santa Teresinha</h4>
+                        <p><strong>Festa:</strong> 1º de outubro<br>
+                        <strong>Padroeira:</strong> Das missões<br>
+                        Conhecida pelo "Caminho da Infância Espiritual", ensinou que a santidade está ao alcance de todos através do amor e confiança em Deus.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">⚔️</div>
+                        <h4>São Miguel Arcanjo</h4>
+                        <p><strong>Festa:</strong> 29 de setembro<br>
+                        <strong>Padroeiro:</strong> Dos policiais<br>
+                        Príncipe dos anjos, defensor contra o mal e protetor da Igreja. "Quem como Deus?" é o significado de seu nome.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">💙</div>
+                        <h4>Nossa Senhora Aparecida</h4>
+                        <p><strong>Festa:</strong> 12 de outubro<br>
+                        <strong>Padroeira:</strong> Do Brasil<br>
+                        Imagem encontrada por pescadores no Rio Paraíba em 1717, tornou-se símbolo da devoção mariana brasileira.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">🕊️</div>
+                        <h4>São Francisco de Assis</h4>
+                        <p><strong>Festa:</strong> 4 de outubro<br>
+                        <strong>Padroeiro:</strong> Dos animais e ecologia<br>
+                        Fundador dos franciscanos, viveu em pobreza radical e amor à criação. Recebeu os estigmas de Cristo.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">📚</div>
+                        <h4>Santo Agostinho</h4>
+                        <p><strong>Festa:</strong> 28 de agosto<br>
+                        <strong>Padroeiro:</strong> Dos teólogos<br>
+                        Doutor da Igreja, converteu-se após vida dissoluta. Escreveu "Confissões" e "A Cidade de Deus".</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">⚖️</div>
+                        <h4>São Tomás de Aquino</h4>
+                        <p><strong>Festa:</strong> 28 de janeiro<br>
+                        <strong>Padroeiro:</strong> Dos estudantes<br>
+                        Doutor Angélico, harmonizou fé e razão. Escreveu a "Suma Teológica", obra fundamental da teologia.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">💒</div>
+                        <h4>Santa Rita de Cássia</h4>
+                        <p><strong>Festa:</strong> 22 de maio<br>
+                        <strong>Padroeira:</strong> Das causas impossíveis<br>
+                        Esposa e mãe exemplar, depois religiosa. Conhecida pelos milagres e intercessão poderosa.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">🎭</div>
+                        <h4>São João Bosco</h4>
+                        <p><strong>Festa:</strong> 31 de janeiro<br>
+                        <strong>Padroeiro:</strong> Dos jovens<br>
+                        Educador dedicado aos jovens pobres. Fundou os salesianos e desenvolveu método educativo inovador.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">🏥</div>
+                        <h4>Santa Teresa de Calcutá</h4>
+                        <p><strong>Festa:</strong> 5 de setembro<br>
+                        <strong>Padroeira:</strong> Dos pobres<br>
+                        Missionária da Caridade, dedicou vida aos mais pobres entre os pobres em Calcutá. Nobel da Paz 1979.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">🗝️</div>
+                        <h4>São Pedro</h4>
+                        <p><strong>Festa:</strong> 29 de junho<br>
+                        <strong>Padroeiro:</strong> Dos pescadores<br>
+                        Primeiro Papa, recebeu as chaves do Reino. Pescador que se tornou "pescador de homens".</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">✍️</div>
+                        <h4>São Paulo</h4>
+                        <p><strong>Festa:</strong> 29 de junho<br>
+                        <strong>Padroeiro:</strong> Dos escritores<br>
+                        Apóstolo dos gentios, converteu-se no caminho de Damasco. Escreveu grande parte do Novo Testamento.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">🌟</div>
+                        <h4>São José</h4>
+                        <p><strong>Festa:</strong> 19 de março<br>
+                        <strong>Padroeiro:</strong> Dos trabalhadores<br>
+                        Pai adotivo de Jesus, modelo de pai e esposo. Protetor da Igreja Universal e dos operários.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Orações -->
+        <section id="oracoes" class="section">
+            <div class="card">
+                <h2>🙏 Orações Católicas</h2>
+                <p>A oração é o diálogo íntimo com Deus. Conheça as principais orações da tradição católica:</p>
+
+                <h3>Pai Nosso</h3>
+                <div class="prayer-box">
+                    Pai nosso que estais nos céus,<br>
+                    santificado seja o vosso nome;<br>
+                    venha a nós o vosso reino;<br>
+                    seja feita a vossa vontade<br>
+                    assim na terra como no céu.<br>
+                    O pão nosso de cada dia nos dai hoje;<br>
+                    perdoai-nos as nossas ofensas,<br>
+                    assim como nós perdoamos<br>
+                    a quem nos tem ofendido;<br>
+                    e não nos deixeis cair em tentação,<br>
+                    mas livrai-nos do mal. Amém.
+                </div>
+
+                <h3>Ave Maria</h3>
+                <div class="prayer-box">
+                    Ave Maria, cheia de graça,<br>
+                    o Senhor é convosco;<br>
+                    bendita sois vós entre as mulheres,<br>
+                    e bendito é o fruto do vosso ventre, Jesus.<br>
+                    Santa Maria, Mãe de Deus,<br>
+                    rogai por nós, pecadores,<br>
+                    agora e na hora da nossa morte. Amém.
+                </div>
+
+                <h3>Glória ao Pai</h3>
+                <div class="prayer-box">
+                    Glória ao Pai, ao Filho e ao Espírito Santo.<br>
+                    Como era no princípio, agora e sempre,<br>
+                    pelos séculos dos séculos. Amém.
+                </div>
+
+                <h3>Oração de São Francisco</h3>
+                <div class="prayer-box">
+                    Senhor, fazei-me instrumento de vossa paz.<br>
+                    Onde houver ódio, que eu leve o amor;<br>
+                    onde houver ofensa, que eu leve o perdão;<br>
+                    onde houver discórdia, que eu leve a união;<br>
+                    onde houver dúvida, que eu leve a fé;<br>
+                    onde houver erro, que eu leve a verdade;<br>
+                    onde houver desespero, que eu leve a esperança;<br>
+                    onde houver tristeza, que eu leve a alegria;<br>
+                    onde houver trevas, que eu leve a luz.
+                </div>
+
+                <h3>Credo</h3>
+                <div class="prayer-box">
+                    Creio em Deus Pai todo-poderoso,<br>
+                    criador do céu e da terra;<br>
+                    e em Jesus Cristo, seu único Filho, nosso Senhor;<br>
+                    que foi concebido pelo poder do Espírito Santo;<br>
+                    nasceu da Virgem Maria,<br>
+                    padeceu sob Pôncio Pilatos,<br>
+                    foi crucificado, morto e sepultado;<br>
+                    desceu à mansão dos mortos;<br>
+                    ressuscitou ao terceiro dia;<br>
+                    subiu aos céus,<br>
+                    está sentado à direita de Deus Pai todo-poderoso,<br>
+                    donde há de vir a julgar os vivos e os mortos;<br>
+                    creio no Espírito Santo,<br>
+                    na santa Igreja Católica,<br>
+                    na comunhão dos santos,<br>
+                    na remissão dos pecados,<br>
+                    na ressurreição da carne,<br>
+                    na vida eterna. Amém.
+                </div>
+
+                <h3>Salve Rainha</h3>
+                <div class="prayer-box">
+                    Salve, Rainha, Mãe de misericórdia,<br>
+                    vida, doçura e esperança nossa, salve!<br>
+                    A vós bradamos, os degredados filhos de Eva;<br>
+                    a vós suspiramos, gemendo e chorando<br>
+                    neste vale de lágrimas.<br>
+                    Eia, pois, advogada nossa,<br>
+                    esses vossos olhos misericordiosos a nós volvei;<br>
+                    e depois deste desterro<br>
+                    mostrai-nos Jesus,<br>
+                    bendito fruto do vosso ventre,<br>
+                    ó clemente, ó piedosa,<br>
+                    ó doce sempre Virgem Maria.
+                </div>
+
+                <h3>Anjo da Guarda</h3>
+                <div class="prayer-box">
+                    Santo Anjo do Senhor,<br>
+                    meu zeloso guardador,<br>
+                    se a ti me confiou<br>
+                    a piedade divina,<br>
+                    sempre me rege, me guarda,<br>
+                    me governa e me ilumina. Amém.
+                </div>
+
+                <h3>Oração a São Miguel Arcanjo</h3>
+                <div class="prayer-box">
+                    São Miguel Arcanjo,<br>
+                    defendei-nos no combate;<br>
+                    sede o nosso refúgio<br>
+                    contra as maldades e ciladas do demônio.<br>
+                    Ordene-lhe Deus, instantemente o pedimos;<br>
+                    e vós, Príncipe da milícia celeste,<br>
+                    pelo divino poder,<br>
+                    precipitai no inferno satanás<br>
+                    e os outros espíritos malignos<br>
+                    que andam pelo mundo<br>
+                    para perder as almas. Amém.
+                </div>
+
+                <h3>Oração do Terço</h3>
+                <div class="prayer-box">
+                    <strong>Mistérios Gozosos (segunda e sábado):</strong><br>
+                    1. A Anunciação do Anjo a Maria<br>
+                    2. A Visitação de Maria a Isabel<br>
+                    3. O Nascimento de Jesus<br>
+                    4. A Apresentação de Jesus no Templo<br>
+                    5. A Perda e o Encontro de Jesus no Templo<br><br>
+                    
+                    <strong>Mistérios Dolorosos (terça e sexta):</strong><br>
+                    1. A Agonia de Jesus no Horto<br>
+                    2. A Flagelação de Jesus<br>
+                    3. A Coroação de Espinhos<br>
+                    4. Jesus carrega a Cruz<br>
+                    5. A Crucificação e Morte de Jesus
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Bíblia -->
+        <section id="biblia" class="section">
+            <div class="card">
+                <h2>📖 Passagens Bíblicas</h2>
+                <p>A Palavra de Deus nos orienta e fortalece. Conheça algumas das passagens mais importantes:</p>
+
+                <h3>Sobre o Amor</h3>
+                <div class="bible-verse">
+                    <strong>1 Coríntios 13:4-7</strong><br>
+                    "O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Não maltrata, não procura seus interesses, não se ira facilmente, não guarda rancor. O amor não se alegra com a injustiça, mas se alegra com a verdade. Tudo sofre, tudo crê, tudo espera, tudo suporta."
+                </div>
+
+                <h3>Sobre a Fé</h3>
+                <div class="bible-verse">
+                    <strong>Hebreus 11:1</strong><br>
+                    "Ora, a fé é a certeza daquilo que esperamos e a prova das coisas que não vemos."
+                </div>
+
+                <h3>Sobre a Esperança</h3>
+                <div class="bible-verse">
+                    <strong>Romanos 15:13</strong><br>
+                    "Que o Deus da esperança os encha de toda alegria e paz, por sua confiança nele, para que vocês transbordem de esperança, pelo poder do Espírito Santo."
+                </div>
+
+                <h3>Sobre o Perdão</h3>
+                <div class="bible-verse">
+                    <strong>Mateus 6:14-15</strong><br>
+                    "Pois se perdoarem as ofensas uns dos outros, o Pai celestial também lhes perdoará. Mas se não perdoarem uns aos outros, o Pai celestial não lhes perdoará as ofensas."
+                </div>
+
+                <h3>Parábola do Bom Samaritano</h3>
+                <div class="bible-verse">
+                    <strong>Lucas 10:30-37</strong><br>
+                    Jesus contou sobre um homem que foi assaltado e deixado quase morto. Um sacerdote e um levita passaram por ele sem ajudar, mas um samaritano teve compaixão, cuidou de suas feridas e o levou a uma hospedaria. Jesus perguntou: "Qual destes três foi o próximo do homem?" A resposta: "Aquele que teve misericórdia dele." E Jesus disse: "Vá e faça o mesmo."
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Símbolos -->
+        <section id="simbolos" class="section">
+            <div class="card">
+                <h2>✝️ Símbolos Católicos</h2>
+                <p>Os símbolos católicos carregam profundos significados espirituais e históricos:</p>
+
+                <div class="symbol-grid">
+                    <div class="symbol-item">
+                        <span class="symbol-icon">✝️</span>
+                        <h4>Cruz</h4>
+                        <p>Símbolo central do cristianismo, representa o sacrifício de Jesus pela humanidade e nossa redenção.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🐟</span>
+                        <h4>Peixe (Ictus)</h4>
+                        <p>Símbolo secreto dos primeiros cristãos. As letras gregas formam "Jesus Cristo, Filho de Deus, Salvador".</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🕊️</span>
+                        <h4>Pomba</h4>
+                        <p>Representa o Espírito Santo, a paz de Deus e a pureza. Apareceu no batismo de Jesus.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🍞</span>
+                        <h4>Pão e Vinho</h4>
+                        <p>Símbolos da Eucaristia, representam o Corpo e Sangue de Cristo na Santa Missa.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🌹</span>
+                        <h4>Rosa</h4>
+                        <p>Símbolo de Nossa Senhora, especialmente como Rosa Mística. Representa pureza e amor maternal.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">⚓</span>
+                        <h4>Âncora</h4>
+                        <p>Símbolo da esperança cristã, que nos mantém firmes na fé mesmo nas tempestades da vida.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🐑</span>
+                        <h4>Cordeiro</h4>
+                        <p>Jesus como "Cordeiro de Deus" que tira o pecado do mundo. Símbolo de sacrifício e pureza.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🌿</span>
+                        <h4>Ramo de Oliveira</h4>
+                        <p>Símbolo da paz e reconciliação. Lembra a pomba de Noé e a paz de Cristo.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">👑</span>
+                        <h4>Coroa</h4>
+                        <p>Representa a realeza de Cristo e a coroa da vida eterna prometida aos fiéis.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🕯️</span>
+                        <h4>Vela</h4>
+                        <p>Cristo como "Luz do Mundo". Representa oração, vigília e presença divina.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">💒</span>
+                        <h4>Igreja</h4>
+                        <p>Casa de Deus, lugar de encontro com o sagrado. Representa a comunidade dos fiéis.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">📿</span>
+                        <h4>Rosário</h4>
+                        <p>Oração mariana contemplativa. Cada conta representa uma Ave-Maria na meditação dos mistérios.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🌟</span>
+                        <h4>Estrela</h4>
+                        <p>Guia dos Reis Magos, representa Maria como "Estrela da Manhã" e esperança cristã.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🍇</span>
+                        <h4>Videira</h4>
+                        <p>"Eu sou a videira, vós os ramos". Representa nossa união com Cristo e a Eucaristia.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🏺</span>
+                        <h4>Cálice</h4>
+                        <p>Contém o Sangue de Cristo na Eucaristia. Símbolo do sacrifício e da Nova Aliança.</p>
+                    </div>
+                    <div class="symbol-item">
+                        <span class="symbol-icon">🔔</span>
+                        <h4>Sino</h4>
+                        <p>Chama os fiéis à oração e anuncia momentos sagrados. Voz que ecoa a Palavra de Deus.</p>
+                    </div>
+                </div>
+
+                <h3>🔥 Símbolos do Espírito Santo</h3>
+                <div class="grid">
+                    <div class="saint-card">
+                        <div class="saint-icon">🔥</div>
+                        <h4>Fogo</h4>
+                        <p>Representa a ação purificadora e transformadora do Espírito Santo em nossas vidas.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">💨</div>
+                        <h4>Vento</h4>
+                        <p>Simboliza a força invisível mas poderosa do Espírito que move e renova todas as coisas.</p>
+                    </div>
+                    <div class="saint-card">
+                        <div class="saint-icon">💧</div>
+                        <h4>Água</h4>
+                        <p>Representa a vida nova que o Espírito Santo traz através do batismo e da graça.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção História -->
+        <section id="historia" class="section">
+            <div class="card">
+                <h2>📜 História do Catolicismo</h2>
+                <p>Conheça os principais marcos da história da Igreja Católica em ordem cronológica:</p>
+
+                <h3>🌅 Era Apostólica (30-100 d.C.)</h3>
+                <div class="bible-verse">
+                    <strong>30 d.C. - Crucificação e Ressurreição de Jesus</strong><br>
+                    Jesus Cristo morre na cruz e ressuscita, estabelecendo a Nova Aliança. Antes de subir aos céus, comissiona os apóstolos: "Ide e fazei discípulos de todas as nações" (Mateus 28:19).
+                </div>
+                <div class="bible-verse">
+                    <strong>33 d.C. - Pentecostes</strong><br>
+                    O Espírito Santo desce sobre os apóstolos. Pedro prega e 3.000 pessoas se convertem. Nasce oficialmente a Igreja Cristã em Jerusalém.
+                </div>
+                <div class="bible-verse">
+                    <strong>49 d.C. - Concílio de Jerusalém</strong><br>
+                    Primeiro concílio da Igreja, presidido por São Pedro e São Tiago. Decide que os gentios podem se converter sem seguir todas as leis judaicas.
+                </div>
+                <div class="bible-verse">
+                    <strong>64 d.C. - Martírio de São Pedro e São Paulo</strong><br>
+                    Durante a perseguição de Nero, os dois grandes apóstolos são martirizados em Roma. Pedro é crucificado de cabeça para baixo.
+                </div>
+
+                <h3>⚔️ Era das Perseguições (100-313 d.C.)</h3>
+                <div class="bible-verse">
+                    <strong>107 d.C. - Martírio de Santo Inácio de Antioquia</strong><br>
+                    Bispo de Antioquia é levado a Roma e devorado por leões. Suas cartas são tesouros da literatura cristã primitiva.
+                </div>
+                <div class="bible-verse">
+                    <strong>155 d.C. - Martírio de São Policarpo</strong><br>
+                    Discípulo do apóstolo João, é queimado vivo aos 86 anos. Suas últimas palavras: "Há 86 anos sirvo a Cristo e Ele nunca me fez mal".
+                </div>
+                <div class="bible-verse">
+                    <strong>250-251 d.C. - Perseguição de Décio</strong><br>
+                    Primeira perseguição sistemática em todo o Império. Muitos cristãos apostatam, criando a questão dos "lapsi" (caídos).
+                </div>
+                <div class="bible-verse">
+                    <strong>303-311 d.C. - Grande Perseguição de Diocleciano</strong><br>
+                    Última e mais severa perseguição. Igrejas são destruídas, livros sagrados queimados, e milhares de cristãos morrem.
+                </div>
+
+                <h3>👑 Era Constantiniana (313-590 d.C.)</h3>
+                <div class="bible-verse">
+                    <strong>313 d.C. - Édito de Milão</strong><br>
+                    Constantino legaliza o cristianismo no Império Romano. Fim das perseguições oficiais e início da era de liberdade religiosa.
+                </div>
+                <div class="bible-verse">
+                    <strong>325 d.C. - Concílio de Niceia</strong><br>
+                    Primeiro concílio ecumênico condena o arianismo e estabelece o Credo Niceno: Jesus é "verdadeiro Deus e verdadeiro homem".
+                </div>
+                <div class="bible-verse">
+                    <strong>380 d.C. - Cristianismo religião oficial</strong><br>
+                    Teodósio I torna o cristianismo a religião oficial do Império Romano através do Édito de Tessalônica.
+                </div>
+                <div class="bible-verse">
+                    <strong>431 d.C. - Concílio de Éfeso</strong><br>
+                    Proclama Maria como "Theotokos" (Mãe de Deus) e condena o nestorianismo, defendendo a unidade da pessoa de Cristo.
+                </div>
+
+                <h3>🏰 Era Medieval (590-1517 d.C.)</h3>
+                <div class="bible-verse">
+                    <strong>590-604 d.C. - Papa São Gregório Magno</strong><br>
+                    Reorganiza a Igreja, desenvolve o canto gregoriano e envia missionários para converter os anglo-saxões.
+                </div>
+                <div class="bible-verse">
+                    <strong>800 d.C. - Coroação de Carlos Magno</strong><br>
+                    Papa Leão III coroa Carlos Magno como Imperador, estabelecendo o Sacro Império Romano-Germânico.
+                </div>
+                <div class="bible-verse">
+                    <strong>1054 d.C. - Grande Cisma do Oriente</strong><br>
+                    Separação definitiva entre Igreja Católica Romana e Igreja Ortodoxa Oriental por questões teológicas e políticas.
+                </div>
+                <div class="bible-verse">
+                    <strong>1095-1291 d.C. - Cruzadas</strong><br>
+                    Série de expedições militares para reconquistar a Terra Santa. Marcam profundamente as relações entre cristianismo e islamismo.
+                </div>
+                <div class="bible-verse">
+                    <strong>1209 d.C. - Aprovação da Ordem Franciscana</strong><br>
+                    Papa Inocêncio III aprova a regra de São Francisco, iniciando um movimento de renovação espiritual na Igreja.
+                </div>
+
+                <h3>⛪ Era Moderna (1517-1962 d.C.)</h3>
+                <div class="bible-verse">
+                    <strong>1517 d.C. - Reforma Protestante</strong><br>
+                    Martinho Lutero publica as 95 Teses, iniciando a Reforma Protestante e dividindo a cristandade ocidental.
+                </div>
+                <div class="bible-verse">
+                    <strong>1545-1563 d.C. - Concílio de Trento</strong><br>
+                    Resposta católica à Reforma. Define doutrinas sobre sacramentos, justificação e autoridade da Igreja.
+                </div>
+                <div class="bible-verse">
+                    <strong>1869-1870 d.C. - Concílio Vaticano I</strong><br>
+                    Define a infalibilidade papal e a jurisdição universal do Papa sobre toda a Igreja Católica.
+                </div>
+                <div class="bible-verse">
+                    <strong>1929 d.C. - Tratado de Latrão</strong><br>
+                    Mussolini e Papa Pio XI criam o Estado do Vaticano, garantindo independência temporal ao Papa.
+                </div>
+
+                <h3>🌍 Era Contemporânea (1962-presente)</h3>
+                <div class="bible-verse">
+                    <strong>1962-1965 d.C. - Concílio Vaticano II</strong><br>
+                    Maior concílio da história, convocado por João XXIII. Moderniza a Igreja, promove ecumenismo e diálogo inter-religioso.
+                </div>
+                <div class="bible-verse">
+                    <strong>1978-2005 d.C. - Pontificado de João Paulo II</strong><br>
+                    Papa polonês, primeiro não-italiano em 455 anos. Contribui para queda do comunismo e evangeliza o mundo inteiro.
+                </div>
+                <div class="bible-verse">
+                    <strong>2013-presente - Papa Francisco</strong><br>
+                    Primeiro papa jesuíta e latino-americano. Enfatiza misericórdia, cuidado com os pobres e proteção do meio ambiente.
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Curiosidades -->
+        <section id="curiosidades" class="section">
+            <div class="card">
+                <h2>🤔 Curiosidades Católicas</h2>
+                <p>Descubra fatos interessantes sobre a história e tradições da Igreja Católica:</p>
+
+                <div class="curiosity-item">
+                    <h4>🏛️ Vaticano - O Menor País do Mundo</h4>
+                    <p>O Vaticano tem apenas 0,17 km² e cerca de 800 habitantes. É o menor país independente do mundo e sede da Igreja Católica.</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>📚 A Igreja e a Ciência</h4>
+                    <p>A Igreja Católica fundou as primeiras universidades europeias. Muitos cientistas famosos eram católicos, incluindo Mendel (genética) e Lemaitre (Big Bang).</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>🎨 Arte Sacra</h4>
+                    <p>A Igreja foi a maior patrona das artes por séculos. Michelangelo, Leonardo da Vinci e Bernini criaram obras-primas para igrejas e o Vaticano.</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>🔔 Sinos das Igrejas</h4>
+                    <p>Os sinos não servem apenas para marcar as horas. Tradicionalmente, eles afastam tempestades e demônios, e chamam os fiéis para a oração.</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>📿 O Rosário</h4>
+                    <p>O rosário tem 150 Ave-Marias, correspondendo aos 150 Salmos da Bíblia. Foi popularizado por São Domingos no século XIII.</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>🕯️ Velas na Igreja</h4>
+                    <p>As velas representam Cristo como "Luz do Mundo". Acender uma vela é um gesto de oração que continua mesmo quando saímos da igreja.</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>👑 Santos Padroeiros</h4>
+                    <p>Quase tudo tem um santo padroeiro: São Cristóvão (viajantes), Santa Cecília (músicos), São José (trabalhadores), e até São Isidoro (internet!).</p>
+                </div>
+
+                <div class="curiosity-item">
+                    <h4>🎄 Tradições Natalinas</h4>
+                    <p>O presépio foi criado por São Francisco de Assis em 1223. A tradição da árvore de Natal também tem origens cristãs medievais.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>✝️ "Eu sou o caminho, a verdade e a vida" - João 14:6</p>
+        <p>Que a paz de Cristo esteja sempre convosco! 🕊️</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Esconder todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remover classe active de todos os botões
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostrar seção selecionada
+            document.getElementById(sectionId).classList.add('active');
+
+            // Adicionar classe active ao botão clicado
+            event.target.classList.add('active');
+
+            // Scroll suave para o topo
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Adicionar efeito de hover nas cards dos santos
+        document.addEventListener('DOMContentLoaded', function() {
+            const saintCards = document.querySelectorAll('.saint-card');
+            saintCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98a5dc77521cc20f',t:'MTc1OTc2MTA3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
